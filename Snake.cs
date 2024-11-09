@@ -22,8 +22,6 @@ namespace DroppingsSolution
 
         public Snake()
         {
-            Position = new Vector2(300, 700);
-            ImageName = "snake";
             speed = 200f;
         }
 

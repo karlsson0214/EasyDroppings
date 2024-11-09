@@ -24,7 +24,7 @@ namespace EasyDroppings
             BackgroundTileName = "bluerock";
 
             Snake snake = new Snake();
-            Add(snake);
+            Add(snake, "snake", 300, 700);
 
 
         }

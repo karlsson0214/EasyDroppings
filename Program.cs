@@ -1,3 +1,4 @@
-﻿
-using var game = new EasyMonoGame.EasyGame(new EasyDroppings.DroppingsWorld());
-game.Run();
+﻿using EasyMonoGame;
+using EasyDroppings;
+EasyGame.Instance.ActiveWorld = new DroppingsWorld();
+EasyGame.Instance.Run();
