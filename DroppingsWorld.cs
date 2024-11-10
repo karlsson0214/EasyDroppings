@@ -12,21 +12,14 @@ namespace EasyDroppings
     {
         public DroppingsWorld() : base(600, 800)
         {
-            GameArt.Add("bluerock");
-            GameArt.Add("cherries");
-            GameArt.Add("herz");
-            GameArt.Add("plum");
-            GameArt.Add("pumpkin");
-            GameArt.Add("skull");
-            GameArt.Add("snake");
-
-
+            // Tile background with file "bluerock" in the Content folder.
             BackgroundTileName = "bluerock";
 
+            // Create a snake object.
             Snake snake = new Snake();
+            // Add the snake to the world at position (300, 700).
+            // Set the snake image to the file "snake" in the Content folder.
             Add(snake, "snake", 300, 700);
-
-
         }
     }
 }
