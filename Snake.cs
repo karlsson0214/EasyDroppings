@@ -41,7 +41,7 @@ namespace DroppingsSolution
                     IsFlippedHorizontally = true;
                     lastDirection = LEFT;
                 }
-                SetX(Position.X  - speed * speedBoostFactor * (float)gameTime.ElapsedGameTime.TotalSeconds);
+                X = Position.X  - speed * speedBoostFactor * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             if (keyState.IsKeyDown(Keys.Right))
             {
@@ -51,16 +51,16 @@ namespace DroppingsSolution
                     IsFlippedHorizontally = false;
                     lastDirection = RIGHT;
                 }
-                SetX(Position.X + speed * speedBoostFactor * (float)gameTime.ElapsedGameTime.TotalSeconds);
+                X= Position.X + speed * speedBoostFactor * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             // Wrap the snake around the screen.
             if (Position.X < 0)
             {
-                SetX(Position.X + World.Width);
+                X = Position.X + World.Width;
             }
             else if (Position.X > World.Width)
             {
-                SetX(Position.X - World.Width);
+                X = Position.X - World.Width;
             }
             speedBoostTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (speedBoostTime < 0)
@@ -70,20 +70,7 @@ namespace DroppingsSolution
 
         }
 
-        /*
-        public bool CollidesWith(Plum plum)
-        {
-            return Vector2.Distance(position, plum.Position) < Radius + plum.Radius;
-        }
-        public bool CollidesWith(Pumpkin pumpkin)
-        {
-            return Vector2.Distance(position, pumpkin.Position) < Radius + pumpkin.Radius;
-        }
-        public bool CollidesWith(Cherry cherry)
-        {
-            return Vector2.Distance(position, cherry.Position) < Radius + cherry.Radius;
-        }
-        */
+
         public void StartSpeedBoost()
         {
             speedBoostFactor = 2f;
