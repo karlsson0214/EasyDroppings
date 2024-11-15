@@ -35,22 +35,12 @@ namespace DroppingsSolution
             var keyState = Keyboard.GetState();
             if (keyState.IsKeyDown(Keys.Left))
             {
-                // If the snake face a new direction, flip it.
-                if (lastDirection == RIGHT)
-                {
-                    IsFlippedHorizontally = true;
-                    lastDirection = LEFT;
-                }
+                IsFlippedHorizontally = true;
                 X = Position.X  - speed * speedBoostFactor * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             if (keyState.IsKeyDown(Keys.Right))
             {
-                // If the snake face a new direction, flip it.
-                if (lastDirection == LEFT)
-                {
-                    IsFlippedHorizontally = false;
-                    lastDirection = RIGHT;
-                }
+                IsFlippedHorizontally = false;
                 X= Position.X + speed * speedBoostFactor * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             // Wrap the snake around the screen.
