@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using EasyMonoGame;
+using EasyDroppings;
 
 namespace DroppingsSolution
 {
@@ -13,12 +14,7 @@ namespace DroppingsSolution
     {
 
         private float speed;
-        private float speedBoostFactor = 1f;
-        private const int RIGHT = 1;
-        private const int LEFT = 2;
-        private int lastDirection = RIGHT;
-        private float speedBoostTime = 0f;
-
+        private int score;
 
         public Snake()
         {
@@ -33,15 +29,16 @@ namespace DroppingsSolution
         {
             // Move the snake based on input.
             var keyState = Keyboard.GetState();
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (keyState.IsKeyDown(Keys.Left))
             {
                 IsFlippedHorizontally = true;
-                X = Position.X  - speed * speedBoostFactor * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                X = Position.X  - speed * deltaTime;
             }
             if (keyState.IsKeyDown(Keys.Right))
             {
                 IsFlippedHorizontally = false;
-                X= Position.X + speed * speedBoostFactor * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                X= Position.X + speed * deltaTime;
             }
             // Wrap the snake around the screen.
             if (Position.X < 0)
@@ -52,19 +49,13 @@ namespace DroppingsSolution
             {
                 X = Position.X - World.Width;
             }
-            speedBoostTime -= (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (speedBoostTime < 0)
+            if (IsTouching(typeof(Plum)))
             {
-                speedBoostFactor = 1f;
+                RemoveTouching(typeof(Plum));
+                score += 1;
+                World.ShowText("Score: " + score, 100, 100);
             }
 
-        }
-
-
-        public void StartSpeedBoost()
-        {
-            speedBoostFactor = 2f;
-            speedBoostTime = 5f;
 
         }
     }
